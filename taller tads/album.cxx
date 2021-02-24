@@ -1,13 +1,12 @@
 #include <iostream>
 #include <bits/stdc++.h>
-#include "Album.h"
-#include "Cancion.h"
-#include <deque>
+#include "album.h"
+#include "cancion.h"
 Album::Album()
 {
     nombreAlbum = "";
     anio = 0;
-    deque<Cancion> listaCanciones;
+    vector<Cancion> listaCanciones;
 }
 string Album::obtenerNombre()
 {
@@ -25,13 +24,13 @@ void Album::fijarAnio(unsigned int anioP)
 {
     anio = anioP;
 }
-void Album::agregarCancion(Cancion cancionP)
+void Album::agregarCancion(string nombreCancion, string generoCancion)
 {
     bool encontrado = false;
-    deque<Cancion>::iterator itCancion;
+    vector<Cancion>::iterator itCancion;
     for (itCancion = listaCanciones.begin(); itCancion != listaCanciones.end(); itCancion++)
     {
-        if (itCancion->obtenerNombre() == cancionP.obtenerNombre())
+        if (itCancion->obtenerNombre() == nombreCancion)
         {
             encontrado = true;
         }
@@ -42,8 +41,21 @@ void Album::agregarCancion(Cancion cancionP)
         cout << "agregando datos al deque de cancion, el nombre del archivo es: " << cancionP.obtenerNombre() << endl; 
     }
 }
-
-deque<Cancion> Album::obtenerCanciones()
+void Album::imprimirCancion()
+{
+    vector<Cancion>::iterator itCancion;
+    if(listaCanciones.empty())
+    {
+        cout<<"paila nea"<<endl;
+    }
+    for (itCancion = listaCanciones.begin(); itCancion != listaCanciones.end(); itCancion++){
+        cout<<itCancion->obtenerNombre() << endl;
+        cout<<itCancion->obtenerGenero() << endl;
+        cout<<itCancion->obtenerduracion() << endl;
+        cout<<itCancion->obtenerCalificacion() << endl;
+    }
+}
+vector<Cancion> Album::obtenerCanciones()
 {
     return listaCanciones;
 }

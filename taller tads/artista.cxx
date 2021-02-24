@@ -1,12 +1,11 @@
 #include <iostream>
-#include "Artista.h"
-#include "Album.h"
-#include <deque>
+#include "artista.h"
+#include "album.h"
 using namespace std;
 Artista::Artista()
 {
     nombreArtista = "";
-    deque<Album> listaAlbum;
+    vector<Album> listaAlbum;
 }
 string Artista::obtenerNombre()
 {
@@ -19,7 +18,7 @@ void Artista::fijarNombre(string nombreArt)
 void Artista::agregarAlbum(Album albumP)
 {
     bool encontrado = false;
-    deque<Album>::iterator itAlbum;
+    vector<Album>::iterator itAlbum;
     for (itAlbum = listaAlbum.begin(); itAlbum != listaAlbum.end(); itAlbum++)
     {
         if (itAlbum->obtenerNombre() == albumP.obtenerNombre())
@@ -33,8 +32,15 @@ void Artista::agregarAlbum(Album albumP)
         cout << "agregando datos al deque de album, el nombre del archivo es : " << albumP.obtenerNombre() << endl; 
     }
 }
+void Artista::imprimirAlbum(){
+    vector<Album>::iterator itAlbum;
+    for (itAlbum = listaAlbum.begin(); itAlbum != listaAlbum.end(); itAlbum++){
+        cout<<itAlbum->obtenerNombre()<<endl;
+        itAlbum->imprimirCancion();
+    }
+}
 
-deque<Album> Artista::obtenerAlbum()
+vector<Album> Artista::obtenerAlbum()
 {
     return listaAlbum;
 }
