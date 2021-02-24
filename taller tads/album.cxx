@@ -27,8 +27,8 @@ void Album::fijarAnio(unsigned int anioP)
 }
 void Album::agregarCancion(Cancion cancionP)
 {
-    deque<Cancion>::iterator itCancion;
     bool encontrado = false;
+    deque<Cancion>::iterator itCancion;
     for (itCancion = listaCanciones.begin(); itCancion != listaCanciones.end(); itCancion++)
     {
         if (itCancion->obtenerNombre() == cancionP.obtenerNombre())
@@ -39,11 +39,7 @@ void Album::agregarCancion(Cancion cancionP)
     if (!encontrado)
     {
         listaCanciones.push_back(cancionP);
-        if (listaCanciones.empty())
-        {
-            cout << "la cancion no se agregaron " << endl;
-        }
-        
+        cout << "agregando datos al deque de cancion, el nombre del archivo es: " << cancionP.obtenerNombre() << endl; 
     }
 }
 

@@ -134,12 +134,13 @@ int main()
         switch (opc)
         {
         case 1:
-            cout << "Ingrese nombre del archivo:";
+            cout << "Ingrese nombre del archivo $: ";
             cin >> nomArch;
             nomArch = nomArch + ".txt";
             leerArchivo(nomArch);
             for (itArtista = listaArtistas.begin(); itArtista != listaArtistas.end(); itArtista++)
             {
+                cout << "-----------------------------------------------------------------------------"<< endl;
                 cout << "El artista " << itArtista->obtenerNombre() << " tiene los albumens: " << endl;
                 listaAlbum = itArtista->obtenerAlbum();
                 if (listaAlbum.empty())
