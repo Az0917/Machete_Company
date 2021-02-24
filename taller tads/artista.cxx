@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Artista.h"
+#include <deque>
 using namespace std;
 Artista::Artista(){
     nombreArtista = "";

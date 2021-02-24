@@ -2,6 +2,7 @@
 #define __ALBUM__H__
 #include<iostream>
 #include<bits/stdc++.h>
+#include <deque>
 #include "Cancion.h"
 using namespace std;
 class Album{

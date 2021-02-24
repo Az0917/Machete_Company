@@ -31,9 +31,7 @@ void agregarArtista(Artista artistaP)
 
 void separar(string datos)
 {
-    Artista artistaM;
-    Cancion cancionM;
-    Album albumM;
+
     int contadorPalabra = 0;
     istringstream is(datos);
     string part;
@@ -66,14 +64,37 @@ void separar(string datos)
         }
         contadorPalabra++;
     }
-    cancionM.fijarNombre(nombreCancion);
-    cancionM.fijarGenero(genero);
-    albumM.fijarNombre(album);
-    albumM.fijarAnio(anio);
-    albumM.agregarCancion(cancionM);
+    Artista artistaM;
+    Cancion cancionM;
+    Album albumM;
+    deque<Album> listaAlbum;
+    deque<Cancion> listaCanciones;
     artistaM.fijarNombre(nombreAutor);
-    artistaM.agregarAlbum(albumM);
     agregarArtista(artistaM);
+    deque<Artista>::iterator itArtista;
+    deque<Album>::iterator itAlbum;
+    deque<Cancion>::iterator itCancion;
+
+    for (itArtista = listaArtistas.begin(); itArtista != listaArtistas.end(); itArtista++)
+    {
+        if (itArtista->obtenerNombre() == artistaM.obtenerNombre())
+        {
+            albumM.fijarNombre(album);
+            albumM.fijarAnio(anio);
+            itArtista->agregarAlbum(albumM);
+            listaAlbum = itArtista->obtenerAlbum();
+            for (itAlbum = listaAlbum.begin(); itAlbum != listaAlbum.end(); itAlbum++)
+            {
+                if (itAlbum->obtenerNombre() == albumM.obtenerNombre())
+                {
+                    cancionM.fijarNombre(nombreCancion);
+                    cancionM.fijarGenero(genero);
+                    itAlbum->agregarCancion(cancionM);
+                    listaCanciones = itAlbum->obtenerCanciones();
+                }
+            }
+        }
+    }
 }
 void leerArchivo(string nomArch)
 {
@@ -99,9 +120,13 @@ int main()
 {
     string nomArch;
     int opc;
-    deque<Artista>::iterator itArtista;
+
     deque<Album> listaAlbum;
     deque<Cancion> listaCanciones;
+    deque<Artista>::iterator itArtista;
+    deque<Album>::iterator itAlbum;
+    deque<Cancion>::iterator itCancion;
+
     while (opc != 0)
     {
         cout << "1)Abrir archivo" << endl;
@@ -115,21 +140,27 @@ int main()
             leerArchivo(nomArch);
             for (itArtista = listaArtistas.begin(); itArtista != listaArtistas.end(); itArtista++)
             {
-                cout << "el artista : " <<itArtista->obtenerNombre() << " tiene los albums "<< endl;
+                cout << "El artista " << itArtista->obtenerNombre() << " tiene los albumens: " << endl;
                 listaAlbum = itArtista->obtenerAlbum();
-                deque<Album>::iterator itAlbum;
+                if (listaAlbum.empty())
+                {
+                    cout << "lista de albumnes vacia" << endl;
+                }
                 for (itAlbum = listaAlbum.begin(); itAlbum != listaAlbum.end(); itAlbum++)
                 {
-                    cout<<itAlbum->obtenerNombre()<<endl;
+                    cout << itAlbum->obtenerNombre()  << endl;
                     listaCanciones = itAlbum->obtenerCanciones();
-                    deque<Cancion>::iterator itCancion;
-                    for(itCancion = listaCanciones.begin(); itCancion != listaCanciones.end(); itCancion++)
+                    if (listaCanciones.empty())
                     {
-                        cout<< "con la cancion: " << itCancion->obtenerNombre() << endl;
+                        cout << "lista de canciones vacia" << endl;
                     }
-    
+                    for (itCancion = listaCanciones.begin(); itCancion != listaCanciones.end(); itCancion++)
+                    {
+                        cout << itCancion->obtenerNombre() << endl;
+                    }
                 }
             }
+
             break;
 
         default:

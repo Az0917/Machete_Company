@@ -1,39 +1,53 @@
 #include <iostream>
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 #include "Album.h"
 #include "Cancion.h"
-Album::Album(){
+#include <deque>
+Album::Album()
+{
     nombreAlbum = "";
     anio = 0;
-    deque <Cancion> listaCanciones;
+    deque<Cancion> listaCanciones;
 }
-string Album::obtenerNombre(){
-    return(nombreAlbum);
+string Album::obtenerNombre()
+{
+    return (nombreAlbum);
 }
-unsigned int Album::obtenerAnio(){
-    return(anio);
+unsigned int Album::obtenerAnio()
+{
+    return (anio);
 }
-void Album::fijarNombre(string nombreAlbump){
+void Album::fijarNombre(string nombreAlbump)
+{
     nombreAlbum = nombreAlbump;
 }
-void Album::fijarAnio(unsigned int anioP){
+void Album::fijarAnio(unsigned int anioP)
+{
     anio = anioP;
 }
-void Album::agregarCancion(Cancion cancionP){
+void Album::agregarCancion(Cancion cancionP)
+{
     deque<Cancion>::iterator itCancion;
     bool encontrado = false;
-    for(itCancion = listaCanciones.begin(); itCancion != listaCanciones.end(); itCancion++)
+    for (itCancion = listaCanciones.begin(); itCancion != listaCanciones.end(); itCancion++)
     {
-        if(itCancion->obtenerNombre() == cancionP.obtenerNombre()){
+        if (itCancion->obtenerNombre() == cancionP.obtenerNombre())
+        {
             encontrado = true;
         }
     }
-    if(!encontrado){
+    if (!encontrado)
+    {
         listaCanciones.push_back(cancionP);
+        if (listaCanciones.empty())
+        {
+            cout << "la cancion no se agregaron " << endl;
+        }
+        
     }
 }
 
-deque <Cancion> Album::obtenerCanciones()
+deque<Cancion> Album::obtenerCanciones()
 {
     return listaCanciones;
 }
