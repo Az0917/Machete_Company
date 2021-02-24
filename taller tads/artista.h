@@ -1,18 +1,20 @@
 #ifndef __ARTISTA__H__
 #define __ARTISTA__H__
 #include <iostream>
+#include <deque>
 #include <bits/stdc++.h>
-#include "album.h"
+#include "Album.h"
 using namespace std;
-class artista{
+class Artista{
     protected:
     string nombreArtista;
-    deque <album> listaAlbum;
+    deque <Album> listaAlbum;
 
     public:
-    artista();
+    Artista();
     string obtenerNombre();
     void fijarNombre(string nombreArt);
-    void agregarAlbum(string nombreAlbum);
+    void agregarAlbum(Album albumP);
+    deque <Album>  obtenerAlbum();
 };
 #endif

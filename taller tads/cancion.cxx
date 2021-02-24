@@ -1,7 +1,7 @@
 #include <iostream>
-#include "cancion.h"
+#include "Cancion.h"
 //constructor
-cancion::cancion(){
+Cancion::Cancion(){
     nombreCancion = "";
     genero = "";
     duracion = 0;
@@ -9,30 +9,30 @@ cancion::cancion(){
 }
 
 //sets
-void cancion::fijarNombre(string nombre){
+void Cancion::fijarNombre(string nombre){
     nombreCancion = nombre;
 }    
-void cancion::fijarGenero(string generoCancion){
+void Cancion::fijarGenero(string generoCancion){
     genero = generoCancion;
 
 }
-void cancion::fijarDuracion(unsigned int duracionT){
+void Cancion::fijarDuracion(unsigned int duracionT){
     duracion = duracionT;
 }
-void cancion::fijarCalificacion(unsigned int calificacionCan){
+void Cancion::fijarCalificacion(unsigned int calificacionCan){
     calificacion = calificacionCan;
 }
 //get
-string cancion::obtenerNombre(){
+string Cancion::obtenerNombre(){
     return(nombreCancion);
 }
-string cancion::obtenerGenero()
+string Cancion::obtenerGenero()
 {
     return(genero);
 }
-unsigned int cancion::obtenerduracion(){
+unsigned int Cancion::obtenerduracion(){
     return(duracion);
 }
-unsigned int cancion::obtenerCalificacion(){
+unsigned int Cancion::obtenerCalificacion(){
     return(calificacion);
 }

@@ -2,7 +2,7 @@
 #define __CANCION__H__
 #include <iostream>
 using namespace std;
-class cancion
+class Cancion
 {
     //atributos
     protected:
@@ -12,7 +12,7 @@ class cancion
     unsigned int calificacion;
     //funciones
     public:
-    cancion();
+    Cancion();
     void fijarNombre(string nombCancion);
     string obtenerNombre();
     void fijarGenero(string nombreGenero);

@@ -1,29 +1,32 @@
 #include <iostream>
-#include "artista.h"
+#include "Artista.h"
 using namespace std;
-artista::artista(){
+Artista::Artista(){
     nombreArtista = "";
-    deque <album> listaAlbum;
+    deque <Album> listaAlbum;
 }
-string artista::obtenerNombre(){
+string Artista::obtenerNombre(){
     return (nombreArtista);
 }
-void artista::fijarNombre(string nombreArt){
+void Artista::fijarNombre(string nombreArt){
     nombreArtista = nombreArt;
 }
-void artista::agregarAlbum(string nombreAlbumP){
+void Artista::agregarAlbum(Album albumP){
     bool encontrado = false;
-    deque<album>::iterator itAlbum;
+    deque<Album>::iterator itAlbum;
     for(itAlbum = listaAlbum.begin();itAlbum != listaAlbum.end();itAlbum++){
-        if(itAlbum->obtenerNombre() == nombreAlbumP)
+        if(itAlbum->obtenerNombre() == albumP.obtenerNombre())
         {
             encontrado = true;
         }
     }
     if(!encontrado)
     {
-        album albumNuevo;
-        albumNuevo.fijarNombre(nombreAlbumP);
-        listaAlbum.push_back(albumNuevo);
+        listaAlbum.push_back(albumP);
     }
+}
+
+deque <Album>  Artista::obtenerAlbum(){
+    return listaAlbum;
+
 }
