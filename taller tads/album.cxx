@@ -37,9 +37,11 @@ void Album::agregarCancion(string nombreCancion, string generoCancion)
     }
     if (!encontrado)
     {
-        listaCanciones.push_back(cancionP);
-        cout << "agregando datos al deque de cancion, el nombre del archivo es: " << cancionP.obtenerNombre() << endl; 
-    }
+        Cancion newCancion;
+        newCancion.fijarNombre(nombreCancion);
+        newCancion.fijarGenero(generoCancion);
+        listaCanciones.push_back(newCancion);
+    }   
 }
 void Album::imprimirCancion()
 {

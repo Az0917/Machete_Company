@@ -9,54 +9,24 @@ using namespace std;
 
 //funciones
 
-void agregarArtista(Artista artistaP, vector<Artista> &listaArtistas)
+
+void agregarDatos(string nombreCancion, string nombreAutor, string genero, string album, int anio, vector<Artista> &listaArtistas)
 {
     bool encontrado = false;
     vector<Artista>::iterator itArtista;
     for (itArtista = listaArtistas.begin(); itArtista != listaArtistas.end(); itArtista++)
     {
-        if (itArtista->obtenerNombre() == artistaP.obtenerNombre())
+        if (itArtista->obtenerNombre() == nombreAutor)
         {
+            itArtista->agregarAlbum(album,anio,nombreCancion,genero);
             encontrado = true;
         }
     }
     if (!encontrado)
     {
-        listaArtistas.push_back(artistaP);
-    }
-}
-void agregarDatos(string nombreCancion, string nombreAutor, string genero, string album, int anio, vector<Artista> &listaArtistas)
-{
-    Artista artistaM;
-    Cancion cancionM;
-    Album albumM;
-    vector<Album> listaAlbum;
-    vector<Cancion> listaCanciones;
-    artistaM.fijarNombre(nombreAutor);
-
-    vector<Artista>::iterator itArtista;
-    vector<Album>::iterator itAlbum;
-    vector<Cancion>::iterator itCancion;
-    agregarArtista(artistaM, listaArtistas);
-    for (itArtista = listaArtistas.begin(); itArtista != listaArtistas.end(); itArtista++)
-    {
-        if (itArtista->obtenerNombre() == artistaM.obtenerNombre())
-        {
-            albumM.fijarNombre(album);
-            albumM.fijarAnio(anio);
-            itArtista->agregarAlbum(albumM);
-            listaAlbum = itArtista->obtenerAlbum();
-            for (itAlbum = listaAlbum.begin(); itAlbum != listaAlbum.end(); itAlbum++)
-            {
-                if (itAlbum->obtenerNombre() == albumM.obtenerNombre())
-                {
-                    cancionM.fijarNombre(nombreCancion);
-                    cancionM.fijarGenero(genero);
-                    itAlbum->agregarCancion(cancionM);
-                    listaCanciones = itAlbum->obtenerCanciones();
-                }
-            }
-        }
+        Artista newArtista;
+        newArtista.fijarNombre(nombreAutor);
+        listaArtistas.push_back(newArtista);
     }
 }
 void separar(string datos, vector<Artista> &listaArtistas)

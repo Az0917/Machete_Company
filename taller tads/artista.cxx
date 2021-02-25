@@ -15,21 +15,25 @@ void Artista::fijarNombre(string nombreArt)
 {
     nombreArtista = nombreArt;
 }
-void Artista::agregarAlbum(Album albumP)
+void Artista::agregarAlbum(string nombreAlbum,int anio, string nombreCancion, string generoCancion)
 {
     bool encontrado = false;
     vector<Album>::iterator itAlbum;
     for (itAlbum = listaAlbum.begin(); itAlbum != listaAlbum.end(); itAlbum++)
     {
-        if (itAlbum->obtenerNombre() == albumP.obtenerNombre())
+        if (itAlbum->obtenerNombre() == nombreAlbum)
         {
+            itAlbum->agregarCancion(nombreCancion,generoCancion);
             encontrado = true;
         }
     }
     if (!encontrado)
     {
-        listaAlbum.push_back(albumP);
-        cout << "agregando datos al deque de album, el nombre del archivo es : " << albumP.obtenerNombre() << endl; 
+        Album newAlbum;
+        newAlbum.fijarNombre(nombreAlbum);
+        newAlbum.fijarAnio(anio);
+        newAlbum.agregarCancion(nombreCancion,generoCancion);
+        listaAlbum.push_back(newAlbum);
     }
 }
 void Artista::imprimirAlbum(){

@@ -13,7 +13,8 @@ class Artista{
     Artista();
     string obtenerNombre();
     void fijarNombre(string nombreArt);
-    void agregarAlbum(Album albumP);
+    void agregarAlbum(string nombreAlbum,int anio, string nombreCancion, string generoCancion);
+    void agregarCancion(string nombreAlbum,int anio, string nombreCancion, string generoCancion);
     void imprimirAlbum();
     vector <Album>  obtenerAlbum();
 };
