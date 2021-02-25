@@ -2,14 +2,13 @@
 #define __ALBUM__H__
 #include<iostream>
 #include<bits/stdc++.h>
-#include <deque>
-#include "Cancion.h"
+#include "cancion.h"
 using namespace std;
 class Album{
     protected:
     string nombreAlbum;
     unsigned int anio;
-    deque <Cancion> listaCanciones;
+    vector <Cancion> listaCanciones;
 
     public:
     Album();
@@ -17,7 +16,8 @@ class Album{
     unsigned int obtenerAnio();
     void fijarNombre(string nombreAlbumCancion);
     void fijarAnio(unsigned int AnioCancion);
-    void agregarCancion(Cancion cancionP);
-    deque <Cancion>  obtenerCanciones();
+    void agregarCancion(string nombreCancion, string generoCancion);
+    void imprimirCancion();
+    vector <Cancion>  obtenerCanciones();
 };
 #endif
