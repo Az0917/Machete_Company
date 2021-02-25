@@ -46,10 +46,6 @@ void Album::agregarCancion(string nombreCancion, string generoCancion)
 void Album::imprimirCancion()
 {
     vector<Cancion>::iterator itCancion;
-    if(listaCanciones.empty())
-    {
-        cout<<"paila nea"<<endl;
-    }
     for (itCancion = listaCanciones.begin(); itCancion != listaCanciones.end(); itCancion++){
         cout<<itCancion->obtenerNombre() << endl;
         cout<<itCancion->obtenerGenero() << endl;

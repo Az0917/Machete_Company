@@ -9,7 +9,6 @@ using namespace std;
 
 //funciones
 
-
 void agregarDatos(string nombreCancion, string nombreAutor, string genero, string album, int anio, vector<Artista> &listaArtistas)
 {
     bool encontrado = false;
@@ -18,7 +17,7 @@ void agregarDatos(string nombreCancion, string nombreAutor, string genero, strin
     {
         if (itArtista->obtenerNombre() == nombreAutor)
         {
-            itArtista->agregarAlbum(album,anio,nombreCancion,genero);
+            itArtista->agregarAlbum(album, anio, nombreCancion, genero);
             encontrado = true;
         }
     }
@@ -26,6 +25,7 @@ void agregarDatos(string nombreCancion, string nombreAutor, string genero, strin
     {
         Artista newArtista;
         newArtista.fijarNombre(nombreAutor);
+        newArtista.agregarAlbum(album, anio, nombreCancion, genero);
         listaArtistas.push_back(newArtista);
     }
 }
@@ -96,6 +96,13 @@ int main()
     while (opc != 0)
     {
         cout << "1)Abrir archivo" << endl;
+        cout << "2)Listar autores alfabeticamente" << endl;
+        cout << "3)Listar canciones de un autor" << endl;
+        cout << "4)Listar todos los album" << endl;
+        cout << "5)Listar canciones de un album" << endl;
+        cout << "6)Listar todas las canciones y album" << endl;
+        cout << "7)editar informacion adicional" << endl;
+        cout << "0)Salir" << endl;
         cin >> opc;
         switch (opc)
         {
@@ -111,8 +118,27 @@ int main()
                 itArtista->imprimirAlbum();
             }
             break;
+        case 2:
+
+            break;
+        case 3:
+
+            break;
+        case 4:
+
+            break;
+        case 5:
+
+            break;
+        case 6:
+
+            break;
+        case 7:
+
+            break;
 
         default:
+            cout << "Ingrese una opcion valida" << endl;
             break;
         }
     }
