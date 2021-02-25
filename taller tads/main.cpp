@@ -5,6 +5,7 @@
 #include "artista.h"
 #include "cancion.h"
 #include "album.h"
+#include "utilidades.h"
 using namespace std;
 
 //funciones
@@ -142,12 +143,14 @@ void albunesAlfa(vector<Artista> &listaArtistas)
             }
         }
     }
-    cout << "    album     |" << endl;
+    cout << "-----------------------------------------------------------------------------" << endl;
     for (itAlbum3 = listaTotalAlbum.begin(); itAlbum3 != listaTotalAlbum.end(); itAlbum3++)
     {
-        cout << "    " << itAlbum3->obtenerNombre() <<endl;
-        
+        cout << itAlbum3->obtenerNombre() <<endl;
+        itAlbum3->imprimirCancionesOrdenadas();
+
     }
+    cout << "-----------------------------------------------------------------------------" << endl;
 }
 int main()
 {
@@ -155,9 +158,12 @@ int main()
     int opc;
     vector<Artista> listaArtistas;
     vector<Artista>::iterator itArtista;
-
+    bool encontrado = false;
+    int validacion5 = 0;
+    system("clear");
     while (opc != 0)
     {
+        titulo();
         cout << "1)Abrir archivo" << endl;
         cout << "2)Listar autores alfabeticamente" << endl;
         cout << "3)Listar canciones de un autor" << endl;
@@ -171,24 +177,23 @@ int main()
         {
         case 1:
 
-            cout << "Ingrese nombre del archivo $: ";
+            cout << "Ingrese nombre del archivo (sin el .txt) $: ";
             cin >> nomArch;
             nomArch = nomArch + ".txt";
             leerArchivo(nomArch, listaArtistas);
-            for (itArtista = listaArtistas.begin(); itArtista != listaArtistas.end(); itArtista++)
+            if (leerArchivo != NULL)
             {
-                cout << "-----------------------------------------------------------------------------" << endl;
-                cout << "El artista " << itArtista->obtenerNombre() << " tiene los albumens: " << endl;
-                itArtista->imprimirAlbum();
+                cout << "--->Archivo Cargado Correctamente<---"<<endl;
             }
+            
             break;
         case 2:
 
             break;
         case 3:
-            cout << "Ingrese el nombre del artista $:" << endl;
+            cout << "Ingrese el nombre del artista $: ";
             cin >> nomArtista;
-
+            cout << endl;
             for (itArtista = listaArtistas.begin(); itArtista != listaArtistas.end(); itArtista++)
             {
 
@@ -196,9 +201,15 @@ int main()
                 if (nomArtista.compare(auxArt) == 0)
                 {
                     itArtista->listarCanciones();
+                    encontrado = true; 
                 }
             }
-            cout << "------------------------------" << endl;
+            if (!encontrado)
+            {
+                cout <<"ALERTA: el autor ingresado no existe" << endl;
+            }
+            
+            cout << "-----------------------------------------------------------------------------" << endl;
 
             break;
         case 4:
@@ -211,9 +222,14 @@ int main()
             cout << endl;
             for (itArtista = listaArtistas.begin(); itArtista != listaArtistas.end(); itArtista++)
             {
-                itArtista->buscarAlbum(nomAlbum);
+                validacion5 = itArtista->buscarAlbum(nomAlbum);
             }
-            cout << "------------------------------" << endl;
+            if (validacion5 == 1)
+            {
+                cout <<"ALERTA: el album ingresado no existe" << endl;
+            }
+            
+            cout << "-----------------------------------------------------------------------------" << endl;
 
             break;
         case 6:
@@ -223,6 +239,9 @@ int main()
         case 7:
 
             break;
+        case 0:
+            cout << "Saliendo del sistema"<<endl;
+            return 0;
 
         default:
             cout << "Ingrese una opcion valida" << endl;

@@ -46,46 +46,28 @@ void Artista::imprimirAlbum()
     }
 }
 
-void Artista::buscarAlbum(string nombre)
+int Artista::buscarAlbum(string nombre)
 {
     vector<Album>::iterator itAlbum;
     vector<Cancion>::iterator itCancion, itCancion2, itCancion3;
     vector<Cancion> canciones1;
     Cancion auxCan;
     string aux;
+    bool encontrado = false;
     for (itAlbum = listaAlbum.begin(); itAlbum != listaAlbum.end(); itAlbum++)
     {
         aux = itAlbum->obtenerNombre();
         if (nombre.compare(aux) == 0)
         {
-            canciones1 = itAlbum->obtenerCanciones();
-
-            for (itCancion = canciones1.begin(); itCancion != canciones1.end(); itCancion++)
-            {
-                for (itCancion2 = canciones1.begin(); itCancion2 != canciones1.end() - 1; itCancion2++)
-                {
-                    if (itCancion->obtenerNombre().compare(itCancion2->obtenerNombre()) < 0)
-                    {
-                        auxCan = *itCancion;
-                        *itCancion = *itCancion2;
-                        *itCancion2 = auxCan;
-                    }
-                }
-            }
+            itAlbum->imprimirCancionesOrdenadas();
+            encontrado = true;
         }
     }
-    for (itCancion3 = canciones1.begin(); itCancion3 != canciones1.end(); itCancion3++)
+    if(!encontrado)
     {
-        if (itCancion3->obtenerNombre().length() == 17)
-        {
-            canciones1.push_back(*itCancion3);
-            canciones1.erase(itCancion3);
-        }
+        return 1;
     }
-    for (itCancion3 = canciones1.begin(); itCancion3 != canciones1.end(); itCancion3++)
-    {
-        cout << "  " << itCancion3->obtenerNombre() << endl;
-    }
+    return 0;
 }
 
 void Artista::listarCanciones()

@@ -19,5 +19,6 @@ class Album{
     void agregarCancion(string nombreCancion, string generoCancion);
     void imprimirCancion();
     vector <Cancion>  obtenerCanciones();
+    void imprimirCancionesOrdenadas();
 };
 #endif
