@@ -16,6 +16,8 @@ class Artista{
     void agregarAlbum(string nombreAlbum,int anio, string nombreCancion, string generoCancion);
     void agregarCancion(string nombreAlbum,int anio, string nombreCancion, string generoCancion);
     void imprimirAlbum();
+    void buscarAlbum(string nombre);
+    void listarCanciones();
     vector <Album>  obtenerAlbum();
 };
 #endif

@@ -53,6 +53,7 @@ void Album::imprimirCancion()
         cout<<itCancion->obtenerCalificacion() << endl;
     }
 }
+
 vector<Cancion> Album::obtenerCanciones()
 {
     return listaCanciones;
