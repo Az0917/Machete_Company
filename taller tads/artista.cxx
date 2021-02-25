@@ -62,7 +62,7 @@ void Artista::buscarAlbum(string nombre)
 
             for (itCancion = canciones1.begin(); itCancion != canciones1.end(); itCancion++)
             {
-                for (itCancion2 = canciones1.begin() + 1; itCancion2 != canciones1.end(); itCancion2++)
+                for (itCancion2 = canciones1.begin(); itCancion2 != canciones1.end() - 1; itCancion2++)
                 {
                     if (itCancion->obtenerNombre().compare(itCancion2->obtenerNombre()) < 0)
                     {
@@ -76,6 +76,14 @@ void Artista::buscarAlbum(string nombre)
     }
     for (itCancion3 = canciones1.begin(); itCancion3 != canciones1.end(); itCancion3++)
     {
+        if (itCancion3->obtenerNombre().length() == 17)
+        {
+            canciones1.push_back(*itCancion3);
+            canciones1.erase(itCancion3);
+        }
+    }
+    for (itCancion3 = canciones1.begin(); itCancion3 != canciones1.end(); itCancion3++)
+    {
         cout << "  " << itCancion3->obtenerNombre() << endl;
     }
 }
@@ -85,7 +93,7 @@ void Artista::listarCanciones()
     vector<Cancion> cancionesCompl, aux;
     vector<Album>::iterator itAlbum;
     vector<Cancion>::iterator itCancion, itCancion2, itCancion3;
-    Cancion auxCan;
+    Cancion auxCan, cancion17;
 
     for (itAlbum = listaAlbum.begin(); itAlbum != listaAlbum.end(); itAlbum++)
     {
@@ -93,9 +101,9 @@ void Artista::listarCanciones()
         cancionesCompl.insert(cancionesCompl.end(), aux.begin(), aux.end());
         for (itCancion = cancionesCompl.begin(); itCancion != cancionesCompl.end(); itCancion++)
         {
-            for (itCancion2 = cancionesCompl.begin() + 1; itCancion2 != cancionesCompl.end(); itCancion2++)
+            for (itCancion2 = cancionesCompl.begin(); itCancion2 != cancionesCompl.end() - 1; itCancion2++)
             {
-                if (itCancion->obtenerNombre().compare(itCancion2->obtenerNombre()) < 0)
+                if (itCancion->obtenerNombre().compare(itCancion2->obtenerNombre()) < 0 && itCancion->obtenerNombre().length() == 16)
                 {
                     auxCan = *itCancion;
                     *itCancion = *itCancion2;
@@ -104,8 +112,17 @@ void Artista::listarCanciones()
             }
         }
     }
-    for (itCancion3 = cancionesCompl.begin(); itCancion3 != cancionesCompl.end(); itCancion3++){
-        cout << "  " << itCancion3->obtenerNombre() << endl;
+    for (itCancion3 = cancionesCompl.begin(); itCancion3 != cancionesCompl.end(); itCancion3++)
+    {
+        if (itCancion3->obtenerNombre().length() == 17)
+        {
+            cancionesCompl.push_back(*itCancion3);
+            cancionesCompl.erase(itCancion3);
+        }
+    }
+    for (itCancion3 = cancionesCompl.begin(); itCancion3 != cancionesCompl.end(); itCancion3++)
+    {
+        cout << "   " << itCancion3->obtenerNombre() << endl;
     }
 }
 
