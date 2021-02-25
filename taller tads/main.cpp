@@ -88,7 +88,7 @@ void leerArchivo(string nomArch, vector<Artista> &listaArtistas)
 }
 int main()
 {
-    string nomArch;
+    string nomArch, nomArtista, auxArt, nomAlbum;
     int opc;
     vector<Artista> listaArtistas;
     vector<Artista>::iterator itArtista;
@@ -107,6 +107,7 @@ int main()
         switch (opc)
         {
         case 1:
+
             cout << "Ingrese nombre del archivo $: ";
             cin >> nomArch;
             nomArch = nomArch + ".txt";
@@ -122,12 +123,33 @@ int main()
 
             break;
         case 3:
+            cout << "Ingrese el nombre del artista $:" << endl;
+            cin >> nomArtista;
+
+            for (itArtista = listaArtistas.begin(); itArtista != listaArtistas.end(); itArtista++)
+            {
+
+                auxArt = itArtista->obtenerNombre();
+                if (nomArtista.compare(auxArt) == 0)
+                {
+                    itArtista->listarCanciones();
+                }
+            }
+            cout << "------------------------------" << endl;
 
             break;
         case 4:
 
             break;
         case 5:
+            cout << "Ingrese el nombre del Album $:  ";
+            cin >> nomAlbum;
+            cout << endl;
+            for (itArtista = listaArtistas.begin(); itArtista != listaArtistas.end(); itArtista++)
+            {
+                itArtista->buscarAlbum(nomAlbum);
+            }
+            cout << "------------------------------" << endl;
 
             break;
         case 6:
