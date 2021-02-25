@@ -86,6 +86,69 @@ void leerArchivo(string nomArch, vector<Artista> &listaArtistas)
     else
         cout << "no se pudo abrir" << endl;
 }
+
+void albunesCronologicos(vector<Artista> &listaArtistas)
+{
+    vector<Album> listaAlubmsActual, listaTotalAlbum;
+    vector<Artista>::iterator itArtista;
+    vector<Album>::iterator itAlbum, itAlbum2, itAlbum3;
+    Album auxAlbum;
+    for (itArtista = listaArtistas.begin(); itArtista != listaArtistas.end(); itArtista++)
+    {
+        listaAlubmsActual = itArtista->obtenerAlbum();
+        listaTotalAlbum.insert(listaTotalAlbum.end(), listaAlubmsActual.begin(), listaAlubmsActual.end());
+    }
+
+    for (itAlbum = listaTotalAlbum.begin(); itAlbum != listaTotalAlbum.end(); itAlbum++)
+    {
+        for (itAlbum2 = listaTotalAlbum.begin(); itAlbum2 != listaTotalAlbum.end() - 1; itAlbum2++)
+        {
+            if (itAlbum->obtenerAnio() < itAlbum2->obtenerAnio())
+            {
+                auxAlbum = *itAlbum2;
+                *itAlbum2 = *itAlbum;
+                *itAlbum = auxAlbum;
+            }
+        }
+    }
+    cout << "    album     |anio" << endl;
+    for (itAlbum3 = listaTotalAlbum.begin(); itAlbum3 != listaTotalAlbum.end(); itAlbum3++)
+    {
+        cout << "    " << itAlbum3->obtenerNombre() << "|" << itAlbum3->obtenerAnio() << endl;
+    }
+}
+
+void albunesAlfa(vector<Artista> &listaArtistas)
+{
+    vector<Album> listaAlubmsActual, listaTotalAlbum;
+    vector<Artista>::iterator itArtista;
+    vector<Album>::iterator itAlbum, itAlbum2, itAlbum3;
+    Album auxAlbum;
+    for (itArtista = listaArtistas.begin(); itArtista != listaArtistas.end(); itArtista++)
+    {
+        listaAlubmsActual = itArtista->obtenerAlbum();
+        listaTotalAlbum.insert(listaTotalAlbum.end(), listaAlubmsActual.begin(), listaAlubmsActual.end());
+    }
+
+    for (itAlbum = listaTotalAlbum.begin(); itAlbum != listaTotalAlbum.end(); itAlbum++)
+    {
+        for (itAlbum2 = listaTotalAlbum.begin(); itAlbum2 != listaTotalAlbum.end() - 1; itAlbum2++)
+        {
+            if (itAlbum->obtenerNombre().compare(itAlbum2->obtenerNombre()) < 0)
+            {
+                auxAlbum = *itAlbum2;
+                *itAlbum2 = *itAlbum;
+                *itAlbum = auxAlbum;
+            }
+        }
+    }
+    cout << "    album     |" << endl;
+    for (itAlbum3 = listaTotalAlbum.begin(); itAlbum3 != listaTotalAlbum.end(); itAlbum3++)
+    {
+        cout << "    " << itAlbum3->obtenerNombre() <<endl;
+        
+    }
+}
 int main()
 {
     string nomArch;
@@ -125,12 +188,14 @@ int main()
 
             break;
         case 4:
-
+            albunesCronologicos(listaArtistas);
+            cout << "-----------------------------------------------------------------------------" << endl;
             break;
         case 5:
 
             break;
         case 6:
+            albunesAlfa(listaArtistas);
 
             break;
         case 7:
