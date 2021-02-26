@@ -74,11 +74,11 @@ int Artista::buscarAlbum(string nombre)
             encontrado = true;
         }
     }
-    if (!encontrado)
+    if(!encontrado)
     {
-        return 1;
+        return 0;
     }
-    return 0;
+    return 1;
 }
 
 void Artista::listarCanciones()

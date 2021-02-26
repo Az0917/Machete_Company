@@ -188,11 +188,12 @@ int main()
     int opc, duracionN, caliN, reto;
     vector<Artista> listaArtistas;
     vector<Artista>::iterator itArtista;
-    bool encontrado = false;
+    bool encontrado = false, banderaCaso5 = true;
     int validacion5 = 0;
     system("clear");
     while (opc != 0)
     {
+        validacion5 = 0;
         titulo();
         cout << "1)Abrir archivo" << endl;
         cout << "2)Listar autores alfabeticamente" << endl;
@@ -252,13 +253,13 @@ int main()
             cout << endl;
             for (itArtista = listaArtistas.begin(); itArtista != listaArtistas.end(); itArtista++)
             {
-                validacion5 = itArtista->buscarAlbum(nomAlbum);
+                validacion5 = validacion5 + itArtista->buscarAlbum(nomAlbum);
             }
-            if (validacion5 == 1)
+            if (validacion5 == 0)
             {
-                cout << "ALERTA: el album ingresado no existe" << endl;
+                cout <<"ALERTA: el album ingresado no existe" << endl;
             }
-
+            
             cout << "-----------------------------------------------------------------------------" << endl;
 
             break;
