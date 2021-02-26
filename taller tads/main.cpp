@@ -30,6 +30,37 @@ void agregarDatos(string nombreCancion, string nombreAutor, string genero, strin
         listaArtistas.push_back(newArtista);
     }
 }
+int editarInfoCancion(vector<Artista> &listaArtista, int duracionN, int caliN, string artista, string album, string cancion)
+{
+    
+    vector<Artista>::iterator itArtista;
+    for (itArtista = listaArtista.begin(); itArtista != listaArtista.end(); itArtista++)
+    {
+
+        if (itArtista->obtenerNombre() == artista)
+        {
+            itArtista->modificarCan(duracionN,caliN,album,cancion);
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    return 1;
+}
+bool comparar( Artista &a, Artista &b){
+    return(a.obtenerNombre() < b.obtenerNombre());
+}
+void autoresAlfabetico(vector<Artista> &listaArtista)
+{
+    vector<Artista> art = listaArtista;
+    sort(art.begin(),art.end(),comparar); 
+    for(int i = 0; i < art.size(); i++)
+    {
+        cout<<art[i].obtenerNombre()<<endl;
+    }  
+}
 void separar(string datos, vector<Artista> &listaArtistas)
 {
 
@@ -146,16 +177,15 @@ void albunesAlfa(vector<Artista> &listaArtistas)
     cout << "-----------------------------------------------------------------------------" << endl;
     for (itAlbum3 = listaTotalAlbum.begin(); itAlbum3 != listaTotalAlbum.end(); itAlbum3++)
     {
-        cout << itAlbum3->obtenerNombre() <<endl;
+        cout << itAlbum3->obtenerNombre() << endl;
         itAlbum3->imprimirCancionesOrdenadas();
-
     }
     cout << "-----------------------------------------------------------------------------" << endl;
 }
 int main()
 {
-    string nomArch, nomArtista, auxArt, nomAlbum;
-    int opc;
+    string nomArch, nomArtista, auxArt, nomAlbum, artista, album, cancion;
+    int opc, duracionN, caliN, reto;
     vector<Artista> listaArtistas;
     vector<Artista>::iterator itArtista;
     bool encontrado = false;
@@ -183,12 +213,12 @@ int main()
             leerArchivo(nomArch, listaArtistas);
             if (leerArchivo != NULL)
             {
-                cout << "--->Archivo Cargado Correctamente<---"<<endl;
+                cout << "--->Archivo Cargado Correctamente<---" << endl;
             }
-            
+
             break;
         case 2:
-
+            autoresAlfabetico(listaArtistas);
             break;
         case 3:
             cout << "Ingrese el nombre del artista $: ";
@@ -201,14 +231,14 @@ int main()
                 if (nomArtista.compare(auxArt) == 0)
                 {
                     itArtista->listarCanciones();
-                    encontrado = true; 
+                    encontrado = true;
                 }
             }
             if (!encontrado)
             {
-                cout <<"ALERTA: el autor ingresado no existe" << endl;
+                cout << "ALERTA: el autor ingresado no existe" << endl;
             }
-            
+
             cout << "-----------------------------------------------------------------------------" << endl;
 
             break;
@@ -226,9 +256,9 @@ int main()
             }
             if (validacion5 == 1)
             {
-                cout <<"ALERTA: el album ingresado no existe" << endl;
+                cout << "ALERTA: el album ingresado no existe" << endl;
             }
-            
+
             cout << "-----------------------------------------------------------------------------" << endl;
 
             break;
@@ -237,10 +267,23 @@ int main()
 
             break;
         case 7:
-
+            cout << "Ingrese nombre artista $:";
+            cin >> artista;
+            cout << "Ingrese nombre album $:";
+            cin >> album;
+            cout << "Ingrese nombre cancion $:";
+            cin >> cancion;
+            cout << "Ingrese nueva calificacion $:";
+            cin >> caliN;
+            cout << "Ingrese nueva duracion $:";
+            cin >> duracionN;
+            reto = editarInfoCancion(listaArtistas, duracionN, caliN, artista, album, cancion);
+            if(reto = 0){
+                cout << "alerta el artista no existe" << endl;
+            }
             break;
         case 0:
-            cout << "Saliendo del sistema"<<endl;
+            cout << "Saliendo del sistema" << endl;
             return 0;
 
         default:

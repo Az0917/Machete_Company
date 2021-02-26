@@ -15,6 +15,17 @@ void Artista::fijarNombre(string nombreArt)
 {
     nombreArtista = nombreArt;
 }
+void Artista::modificarCan(int duracionN, int caliN, string album, string cancion)
+{
+    vector<Album>::iterator itAlbum;
+    for (itAlbum = listaAlbum.begin(); itAlbum != listaAlbum.end(); itAlbum++)
+    {
+        if (itAlbum->obtenerNombre() == album)
+        {
+            itAlbum->modificarCancion(duracionN, caliN, cancion);
+        }
+    }
+}
 void Artista::agregarAlbum(string nombreAlbum, int anio, string nombreCancion, string generoCancion)
 {
     bool encontrado = false;
@@ -63,7 +74,7 @@ int Artista::buscarAlbum(string nombre)
             encontrado = true;
         }
     }
-    if(!encontrado)
+    if (!encontrado)
     {
         return 1;
     }

@@ -16,6 +16,22 @@ unsigned int Album::obtenerAnio()
 {
     return (anio);
 }
+void Album::modificarCancion(int duracionN, int caliN, string cancion)
+{
+    vector<Cancion>::iterator itCancion;
+    for (itCancion = listaCanciones.begin(); itCancion != listaCanciones.end(); itCancion++)
+    {
+        if (itCancion->obtenerNombre() == cancion)
+        {
+            itCancion->fijarCalificacion(caliN);
+            itCancion->fijarDuracion(duracionN);
+            cout << "Se modifico la cancion " << itCancion->obtenerNombre() << " la informacion actual es:" << endl;
+            cout << itCancion->obtenerCalificacion() << endl;
+            cout << itCancion->obtenerduracion() << endl;
+            cout << itCancion->obtenerGenero() << endl;
+        }
+    }
+}
 void Album::fijarNombre(string nombreAlbump)
 {
     nombreAlbum = nombreAlbump;
@@ -70,7 +86,7 @@ void Album::imprimirCancionesOrdenadas()
     {
         for (itCancion2 = canciones1.begin(); itCancion2 != canciones1.end() - 1; itCancion2++)
         {
-            if (itCancion->obtenerNombre().compare(itCancion2->obtenerNombre()) < 0 )
+            if (itCancion->obtenerNombre().compare(itCancion2->obtenerNombre()) < 0)
             {
                 auxCan = *itCancion;
                 *itCancion = *itCancion2;

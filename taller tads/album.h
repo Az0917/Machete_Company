@@ -17,6 +17,7 @@ class Album{
     void fijarNombre(string nombreAlbumCancion);
     void fijarAnio(unsigned int AnioCancion);
     void agregarCancion(string nombreCancion, string generoCancion);
+    void modificarCancion(int duracionN, int caliN, string cancion);
     void imprimirCancion();
     vector <Cancion>  obtenerCanciones();
     void imprimirCancionesOrdenadas();

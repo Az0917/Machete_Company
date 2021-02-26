@@ -5,7 +5,7 @@
 #include "album.h"
 using namespace std;
 class Artista{
-    protected:
+    private:
     string nombreArtista;
     vector <Album> listaAlbum;
 
@@ -15,6 +15,7 @@ class Artista{
     void fijarNombre(string nombreArt);
     void agregarAlbum(string nombreAlbum,int anio, string nombreCancion, string generoCancion);
     void agregarCancion(string nombreAlbum,int anio, string nombreCancion, string generoCancion);
+    void modificarCan(int duracionN, int caliN, string album, string cancion);
     void imprimirAlbum();
     int buscarAlbum(string nombre);
     void listarCanciones();
